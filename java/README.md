@@ -11,9 +11,9 @@ This package is available on Maven Central and can be added to your project as f
 ```xml
 <dependencies>
     <dependency>
-        <groupId>org.hprose</groupId>
+        <groupId>org.hprose.opentracing</groupId>
         <artifactId>hprose-opentracing</artifactId>
-        <version>2.0.0</version>
+        <version>0.1.0</version>
     </dependency>
 </dependencies>
 ```
@@ -21,7 +21,7 @@ This package is available on Maven Central and can be added to your project as f
 **Gradle**
 
 ```
-compile 'org.hprose:hprose-opentracing:2.0.0'
+compile 'org.hprose.opentracing:hprose-opentracing:0.1.0'
 ```
 
 ## Quickstart
