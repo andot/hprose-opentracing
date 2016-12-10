@@ -61,19 +61,20 @@ public class HttpServiceTracingInvokeHandler implements InvokeHandler {
         span.setTag("hprose.byref", httpContext.isByref());
         span.setTag("hprose.oneway", httpContext.getRemoteMethod().oneway);
         span.setTag("hprose.simple", httpContext.getRemoteMethod().simple);
+        context.set(HttpClientTracingInvokeHandler.KEY_NAME, span);
         return next.handle(name, args, context).whenComplete(new Action<Object>() {
             public void call(Object value) throws Throwable {
                 if (value instanceof Throwable) {
                     Throwable error = ((Throwable)value);
                     if (error.getCause() == null) {
-                        span.log(error.getMessage(), error.getCause().getMessage());
+                        span.log(error.getCause().getMessage());
                     }
                     else {
-                        span.log("Error", error.getMessage());
+                        span.log(error.getMessage());
                     }
                 }
                 else {
-                    span.log("Call completed", null);
+                    span.log("Call completed");
                 }
                 span.finish();
             }
