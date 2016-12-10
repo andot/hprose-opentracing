@@ -1,4 +1,6 @@
-# hprose-OpenTracing
+<p align="center"><img src="http://hprose.com/banner.@2x.png" alt="Hprose" title="Hprose" width="650" height="200" /></p>
+
+# Hprose-OpenTracing
 
 This package enables distributed tracing in hprose clients and servers via [The OpenTracing Project](http://opentracing.io/): a set of consistent, expressive, vendor-neutral APIs for distributed tracing and context propagation.
 
