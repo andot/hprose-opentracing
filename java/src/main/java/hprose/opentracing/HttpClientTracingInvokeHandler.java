@@ -75,14 +75,14 @@ public class HttpClientTracingInvokeHandler implements InvokeHandler {
                 if (value instanceof Throwable) {
                     Throwable error = ((Throwable)value);
                     if (error.getCause() == null) {
-                        span.log(error.getMessage(), error.getCause().getMessage());
+                        span.log(error.getCause().getMessage());
                     }
                     else {
-                        span.log("Error", error.getMessage());
+                        span.log(error.getMessage());
                     }
                 }
                 else {
-                    span.log("Call completed", null);
+                    span.log("Call completed");
                 }
                 span.finish();
             }
