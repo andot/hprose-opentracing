@@ -17,11 +17,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class ClientTracingHandler implements InvokeHandler {
+public class HttpClientTracingInvokeHandler implements InvokeHandler {
     public static final String KEY_NAME = "io.opentracing.active-span";
     private final Tracer tracer;
 
-    public ClientTracingHandler(Tracer tracer) {
+    public HttpClientTracingInvokeHandler(Tracer tracer) {
         this.tracer = tracer;
     }
 
@@ -80,6 +80,9 @@ public class ClientTracingHandler implements InvokeHandler {
                     else {
                         span.log("Error", error.getMessage());
                     }
+                }
+                else {
+                    span.log("Call completed", null);
                 }
                 span.finish();
             }
