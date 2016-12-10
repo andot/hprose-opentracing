@@ -17,7 +17,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 public class HttpServiceTracingInvokeHandler implements InvokeHandler {
-    public static final String KEY_NAME = "io.opentracing.active-span";
     private final Tracer tracer;
 
     public HttpServiceTracingInvokeHandler(Tracer tracer) {
