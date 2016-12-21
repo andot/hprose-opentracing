@@ -1,5 +1,6 @@
 package hprose.opentracing;
 
+import io.opentracing.NoopTracerFactory;
 import io.opentracing.Tracer;
 import java.lang.reflect.Method;
 import java.util.Iterator;
@@ -16,6 +17,6 @@ public class TracerLoader {
             if (tracers.hasNext()) return tracers.next();
         }
         catch (Exception ex) {}
-        return null;
+        return NoopTracerFactory.create();
     }
 }

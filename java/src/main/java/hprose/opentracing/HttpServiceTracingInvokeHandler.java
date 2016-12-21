@@ -21,9 +21,6 @@ public class HttpServiceTracingInvokeHandler implements InvokeHandler {
 
     public HttpServiceTracingInvokeHandler()  {
         tracer = TracerLoader.loadTracer();
-        if (tracer == null) {
-            throw new TypeNotPresentException("io.opentracing.Tracer", null);
-        }
     }
 
     public HttpServiceTracingInvokeHandler(Tracer tracer) {
