@@ -9,6 +9,11 @@ import hprose.util.concurrent.Promise;
 import io.opentracing.Tracer;
 
 public class HttpClientTracingExInvokeHandler extends HttpClientTracingInvokeHandler {
+
+    public HttpClientTracingExInvokeHandler()  {
+        super();
+    }
+
     public HttpClientTracingExInvokeHandler(Tracer tracer) {
         super(tracer);
     }

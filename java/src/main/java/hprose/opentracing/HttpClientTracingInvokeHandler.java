@@ -21,6 +21,13 @@ public class HttpClientTracingInvokeHandler implements InvokeHandler {
     public static final String KEY_NAME = "io.opentracing.active-span";
     private final Tracer tracer;
 
+    public HttpClientTracingInvokeHandler()  {
+        tracer = TracerLoader.loadTracer();
+        if (tracer == null) {
+            throw new TypeNotPresentException("io.opentracing.Tracer", null);
+        }
+    }
+
     public HttpClientTracingInvokeHandler(Tracer tracer) {
         this.tracer = tracer;
     }

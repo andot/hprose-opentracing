@@ -19,6 +19,13 @@ import javax.servlet.http.HttpServletRequest;
 public class HttpServiceTracingInvokeHandler implements InvokeHandler {
     private final Tracer tracer;
 
+    public HttpServiceTracingInvokeHandler()  {
+        tracer = TracerLoader.loadTracer();
+        if (tracer == null) {
+            throw new TypeNotPresentException("io.opentracing.Tracer", null);
+        }
+    }
+
     public HttpServiceTracingInvokeHandler(Tracer tracer) {
         this.tracer = tracer;
     }
