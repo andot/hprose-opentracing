@@ -1,4 +1,4 @@
-package hprose.opentracing;
+package io.opentracing.contrib.hrpose;
 
 import hprose.client.ClientContext;
 import hprose.common.HproseContext;

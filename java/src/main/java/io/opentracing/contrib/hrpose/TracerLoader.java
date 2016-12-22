@@ -1,4 +1,4 @@
-package hprose.opentracing;
+package io.opentracing.contrib.hrpose;
 
 import io.opentracing.NoopTracerFactory;
 import io.opentracing.Tracer;

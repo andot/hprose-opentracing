@@ -1,4 +1,4 @@
-package hprose.opentracing;
+package io.opentracing.contrib.hrpose;
 
 import hprose.common.HproseContext;
 import hprose.common.InvokeHandler;

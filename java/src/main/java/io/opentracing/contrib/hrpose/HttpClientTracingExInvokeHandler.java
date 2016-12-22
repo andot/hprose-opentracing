@@ -1,8 +1,8 @@
-package hprose.opentracing;
+package io.opentracing.contrib.hrpose;
 
 import hprose.common.HproseContext;
 import hprose.common.NextInvokeHandler;
-import static hprose.opentracing.HttpClientTracingInvokeHandler.KEY_NAME;
+import static io.opentracing.contrib.hrpose.HttpClientTracingInvokeHandler.KEY_NAME;
 import hprose.server.HproseHttpService;
 import hprose.server.HttpContext;
 import hprose.util.concurrent.Promise;
