@@ -1,4 +1,4 @@
-package io.opentracing.contrib.hrpose;
+package io.opentracing.contrib.hprose;
 
 import hprose.common.HproseContext;
 import hprose.common.InvokeHandler;
@@ -16,17 +16,37 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Hprose Server side invoke handler.
+ *
+ * {@link HttpServiceTracingInvokeHandler} extract the OpenTracing Context from http header.
+ * And create span on server side.
+ *
+ */
 public class HttpServiceTracingInvokeHandler implements InvokeHandler {
     private final Tracer tracer;
 
+    /**
+     * Use {@TracerLoader} to get a tracer implementation.
+     */
     public HttpServiceTracingInvokeHandler()  {
         tracer = TracerLoader.loadTracer();
     }
 
+    /**
+     * Set the tracer implementation.
+     * @param tracer , a tracer implementation.
+     */
     public HttpServiceTracingInvokeHandler(Tracer tracer) {
         this.tracer = tracer;
     }
 
+    /**
+     * Extract OpenTracing context from head, and create span.
+     * @param headers HTTP headers.
+     * @param operationName span's operation name.
+     * @return
+     */
     private Span getSpanFromHeaders(Map<String, String> headers, String operationName) {
         Span span;
         try {
@@ -45,6 +65,12 @@ public class HttpServiceTracingInvokeHandler implements InvokeHandler {
         return span;
     }
 
+    /**
+     * Get HTTP headers from {@link HttpContext}, and convert it to {@link Map}
+     *
+     * @param httpContext
+     * @return
+     */
     private Map<String, String> getHttpHeader(HttpContext httpContext) {
         Map<String, String> header = new HashMap<String, String>();
         HttpServletRequest request = httpContext.getRequest();
@@ -55,6 +81,16 @@ public class HttpServiceTracingInvokeHandler implements InvokeHandler {
         return header;
     }
 
+    /**
+     * Extract the OpenTracing Context,
+     * tag and log span
+     *
+     * @param name ServiceName.
+     * @param args All service args.
+     * @param context Hprose service context
+     * @param next The ref to next invoke handler on invoke chain.
+     * @return the Promise of Invoke result. Ref to usage of Promise: https://github.com/hprose/hprose-java/wiki/Hprose-%E4%B8%AD%E9%97%B4%E4%BB%B6#%E8%B0%83%E7%94%A8%E4%B8%AD%E9%97%B4%E4%BB%B6
+     */
     public Promise<Object> handle(String name, Object[] args, HproseContext context, NextInvokeHandler next) {
         final HttpContext httpContext = (HttpContext)context;
         final Span span = getSpanFromHeaders(getHttpHeader(httpContext), name);
