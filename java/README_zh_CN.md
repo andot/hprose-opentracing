@@ -11,8 +11,8 @@
 ```xml
 <dependencies>
     <dependency>
-        <groupId>io.opentracing.contrib.hrpose</groupId>
-        <artifactId>opentracing-hrpose-java</artifactId>
+        <groupId>io.opentracing.contrib.hprose</groupId>
+        <artifactId>opentracing-hprose-java</artifactId>
         <version>0.1.0</version>
     </dependency>
 </dependencies>
@@ -21,7 +21,7 @@
 **Gradle**
 
 ```
-compile 'io.opentracing.contrib.hrpose:opentracing-hrpose-java:0.1.0'
+compile 'io.opentracing.contrib.hprose:opentracing-hprose-java:0.1.0'
 ```
 
 ## 快速入门
@@ -39,7 +39,7 @@ compile 'io.opentracing.contrib.hrpose:opentracing-hrpose-java:0.1.0'
 ```xml
 <init-param>
     <param-name>invoke</param-name>
-    <param-value>io.opentracing.contrib.hrpose.HttpServiceTracingInvokeHandler</param-value>
+    <param-value>io.opentracing.contrib.hprose.HttpServiceTracingInvokeHandler</param-value>
 </init-param>
 ```
 
@@ -57,7 +57,7 @@ compile 'io.opentracing.contrib.hrpose:opentracing-hrpose-java:0.1.0'
 package hprose.exam.server;
 import hprose.common.HproseMethods;
 import hprose.server.HproseServlet;
-import io.opentracing.contrib.hrpose.HttpServiceTracingInvokeHandler;
+import io.opentracing.contrib.hprose.HttpServiceTracingInvokeHandler;
 
 public class MyHproseServlet extends HproseServlet {
     public String hello(String name) {
